@@ -1,0 +1,275 @@
+/* 重置样式 */
+@import "reset.css";
+
+/* 基础样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3c3c3c; /* 黑灰色背景 */
+    color: #fff; /* 字体颜色 */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    cursor: default;
+}
+
+/* 左侧导航栏样式 */
+.sidebar {
+    width: 250px; /* 侧边栏宽度 */
+    background: #686666; /* 侧边栏背景颜色 */
+    color: #fff; /* 字体颜色 */
+    position: fixed;
+    top: 0;
+    bottom: 0; /* 使侧边栏到底 */
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar .profile {
+    text-align: center;
+}
+
+.sidebar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* 导航链接样式 */
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* 缩小间距 */
+}
+
+.sidebar nav a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff; /* 字体颜色 */
+    background-color: transparent; /* 背景透明 */
+    border: none; /* 去掉边框 */
+    transition: background-color 0.3s ease, font-weight 0.3s ease; /* 优化动画 */
+}
+
+.sidebar nav a:hover {
+    background-color: #444; /* 深色背景悬停效果 */
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* 下拉菜单样式 */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: static; /* 在侧边栏内显示 */
+    background: #686666; /* 与侧边栏一致的颜色 */
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease; /* 优化动画 */
+}
+
+.dropdown-content.active {
+    display: block;
+    max-height: 200px; /* 根据需要调整高度 */
+}
+
+.dropdown-content a {
+    padding: 10px 20px;
+    color: #fff; /* 白色字体 */
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease; /* 优化动画 */
+}
+
+.dropdown-content a:hover {
+    background-color: #444; /* 深色背景悬停效果 */
+}
+
+/* 内容区域样式 */
+.content {
+    flex: 1;
+    margin-left: 250px; /* 与侧边栏宽度一致 */
+    padding: 0;
+    overflow-y: auto;
+}
+
+/* 头部满屏照片样式 */
+.hero {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 主要内容区域样式 */
+main {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+section h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative; /* 使分割线相对于标题定位 */
+}
+
+section h2::after {
+    content: ''; /* 伪元素 */
+    display: block; /* 作为块元素 */
+    height: 2px; /* 分割线高度 */
+    background-color: rgba(255, 255, 255, 0.2); /* 颜色调整为更柔和的白色 */
+    width: 100%; /* 分割线宽度 */
+    margin: 0.5rem auto 0; /* 上下间距自动，居中对齐 */
+}
+
+/* 作品集画廊样式 */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.gallery-item {
+    flex: 1 1 200px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; /* 优化动画 */
+}
+
+.gallery-item:hover img {
+    transform: translateY(-20px) scale(1.3);
+}
+
+.fixed-description,
+.description {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.fixed-description {
+    bottom: 30px;
+}
+
+.description {
+    bottom: 0;
+    padding: 10px;
+    background-color: transparent;
+    transform: translateY(100%);
+    transition: transform 0.5s ease; /* 优化动画 */
+}
+
+.gallery-item:hover .fixed-description {
+    transform: translateY(-60px);
+}
+
+.gallery-item:hover .description {
+    transform: translateY(-40px);
+}
+
+/* 博客文章样式 */
+.blog-posts article {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.blog-posts article h3 {
+    transition: all 0.3s ease; /* 优化动画 */
+}
+
+.blog-posts article h3:hover {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease; /* 优化动画 */
+}
+
+.social-links a:hover {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+.recent-posts ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.recent-posts li {
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+}
+
+.recent-posts a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease; /* 优化动画 */
+}
+
+.recent-posts a:hover {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+/* 去掉所有不必要的边框 */
+* {
+    border: none !important;
+    outline: none !important;
+}

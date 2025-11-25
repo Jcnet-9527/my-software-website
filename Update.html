@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件版本信息</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.6;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>软件版本信息</h1>
+    <div id="versionInfo"></div>
+
+    <script type="application/json" id="versionData">
+        {
+            "version": "1.2.0",
+            "download_url": "https://yourdomain.com/download/software_v1.2.0.exe",
+            "update_date": "2024-01-15",
+            "changelog": "修复已知问题，优化新内容，更新了新功能",
+            "file_size": "15.2MB",
+            "md5": "a1b2c3d4e5f678901234567890123456"
+        }
+    </script>
+
+    <script>
+        // 在DOM加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取嵌入的JSON数据
+            const jsonDataElement = document.getElementById('versionData');
+            const jsonDataString = jsonDataElement.textContent;
+            
+            try {
+                // 解析JSON字符串为JavaScript对象
+                const versionData = JSON.parse(jsonDataString);
+                
+                // 获取要显示信息的容器
+                const container = document.getElementById('versionInfo');
+                
+                // 构建HTML内容来展示版本信息
+                container.innerHTML = `
+                    <p><strong>版本号:</strong> ${versionData.version}</p>
+                    <p><strong>更新日期:</strong> ${versionData.update_date}</p>
+                    <p><strong>文件大小:</strong> ${versionData.file_size}</p>
+                    <p><strong>MD5校验码:</strong> <code>${versionData.md5}</code></p>
+                    <p><strong>更新日志:</strong> ${versionData.changelog}</p>
+                    <p><a href="${versionData.download_url}" target="_blank">下载软件</a></p>
+                    <hr>
+                    <h3>原始JSON数据（用于调试）</h3>
+                    <pre>${jsonDataString}</pre>
+                `;
+            } catch (error) {
+                console.error('解析JSON时出错:', error);
+                document.getElementById('versionInfo').innerHTML = '<p style="color: red;">加载版本信息时出错，请检查控制台。</p>';
+            }
+        });
+    </script>
+</body>
+</html>

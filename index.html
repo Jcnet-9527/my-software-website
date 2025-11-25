@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶梓 - 摄影师</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- 引入 Font Awesome -->
+    <style>
+        .gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .gallery-item {
+            position: relative;
+            width: 22%;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .gallery-item img {
+            width: 100%;
+            display: block;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .overlay .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .overlay .text {
+            text-align: center;
+        }
+        .overlay .text h3 {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <div id="sidebar" class="sidebar">
+        <div class="profile">
+            <img src="images/profile.jpg" alt="叶梓头像">
+            <h1>YEZI <span>叶梓 .art</span></h1>
+        </div>
+        <nav>
+            <div class="dropdown">
+                <a href="#" class="dropbtn" id="portfolio-dropdown">作品集</a>
+                <div class="dropdown-content" id="dropdown-content">
+                    <a href="#travel">旅行摄影</a>
+                    <a href="#portrait">人像摄影</a>
+                    <a href="#mobile">手机摄影</a>
+                </div>
+            </div>
+            <a href="#blog">博客</a>
+            <a href="#about">关于</a>
+            <a href="#contact">联系</a>
+            <a href="#" id="top-link">回到顶部</a>
+        </nav>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <header id="hero" class="hero">
+            <!-- 图片将通过JavaScript动态加载 -->
+        </header>
+
+        <main id="main-content">
+            <section id="portfolio">
+                <h2>摄影作品</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="images/20240806.jpg" alt="纪实摄影">
+                        <div class="overlay">
+                            <i class="icon fa fa-film"></i>
+                            <div class="text">
+                                <h3>纪实摄影作品</h3>
+                                <p>Documentary Photography</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/20240807.jpg" alt="旅行摄影">
+                        <div class="overlay">
+                            <i class="icon fa fa-plane"></i>
+                            <div class="text">
+                                <h3>旅行摄影作品</h3>
+                                <p>Travel Photography</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/20240808.jpg" alt="人像摄影">
+                        <div class="overlay">
+                            <i class="icon fa fa-user"></i>
+                            <div class="text">
+                                <h3>人像摄影作品</h3>
+                                <p>Portrait Photography</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/20240809.jpg" alt="手机摄影">
+                        <div class="overlay">
+                            <i class="icon fa fa-mobile-alt"></i>
+                            <div class="text">
+                                <h3>手机摄影作品</h3>
+                                <p>Mobile Photography</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blog">
+                <h2>博客</h2>
+                <div class="blog-posts">
+                    <article>
+                        <h3>博客文章标题</h3>
+                        <p>文章摘要...</p>
+                        <a href="blog-post.html">阅读更多</a>
+                    </article>
+                </div>
+            </section>
+
+            <section id="about">
+                <h2>关于叶梓</h2>
+                <p>关于叶梓的简介...</p>
+            </section>
+
+            <section id="contact">
+                <h2>联系</h2>
+                <p>联系信息...</p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://www.facebook.com/yezi.art">Facebook</a>
+                <a href="https://www.instagram.com/yezi.art">Instagram</a>
+                <a href="mailto:hi@yezi.art">Email</a>
+            </div>
+            <div class="recent-posts">
+                <h3>近期文章</h3>
+                <ul>
+                    <li><a href="#">文章标题1</a></li>
+                    <li><a href="#">文章标题2</a></li>
+                    <li><a href="#">文章标题3</a></li>
+                </ul>
+            </div>
+            <p>&copy; 2024 叶梓. 保留所有权利。</p>
+        </footer>
+    </div>
+
+    <script src="scripts.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 初始化图片上传功能
+    const uploadForm = document.createElement('div');
+    uploadForm.className = 'upload-container';
+    uploadForm.innerHTML = `
+        <h2>图片管理后台</h2>
+        <input type="file" id="imageInput" accept="image/*">
+        <input type="text" id="description" placeholder="图片描述">
+        <button onclick="uploadImage()">上传图片</button>
+        <div id="imageList" class="image-grid"></div>
+    `;
+    document.body.insertBefore(uploadForm, document.querySelector('.gallery'));
+});
+
+// 统一上传函数
+async function uploadImage() {
+    const fileInput = document.getElementById('imageInput');
+    const description = document.getElementById('description').value;
+    
+    if (!fileInput.files[0]) {
+        alert('请选择要上传的图片');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', fileInput.files[0]);
+    formData.append('description', description);
+
+    try {
+        const response = await fetch('http://localhost:3001/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            alert('上传成功！');
+            loadImages();
+            fileInput.value = '';
+            document.getElementById('description').value = '';
+        }
+    } catch (error) {
+        console.error('上传失败:', error);
+        alert('上传失败，请重试');
+    }
+}
+
+// 统一加载图片函数
+async function loadImages() {
+    try {
+        const response = await fetch('http://localhost:3001/api/images');
+        const images = await response.json();
+        
+        const gallery = document.querySelector('.gallery');
+        gallery.innerHTML = images.map(img => 
+            `<div class="image-card" data-id="${img.id}">
+                <img src="${img.url}" alt="${img.description}">
+                <div class="image-info">
+                    <p>${img.description}</p>
+                    <button onclick="deleteImage(${img.id})">删除</button>
+                </div>
+            </div>`
+        ).join('');
+    } catch (error) {
+        console.error('加载失败:', error);
+    }
+}
+
+// 统一删除函数
+async function deleteImage(id) {
+    if (!confirm('确定要删除这张图片吗？')) return;
+    
+    try {
+        const response = await fetch(`http://localhost:3001/api/images/${id}`, {
+            method: 'DELETE'
+        });
+        
+        if (response.ok) {
+            document.querySelector(`.image-card[data-id="${id}"]`)?.remove();
+            alert('删除成功');
+        }
+    } catch (error) {
+        console.error('删除失败:', error);
+        alert('删除失败，请重试');
+    }
+}
+
+// 初始化加载
+loadImages();
+</script>
+</body>
+
+</script>
+</html>
