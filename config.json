@@ -1,0 +1,8 @@
+{
+    "version": "1.2.1",
+    "download_url": "https://example.com/download/software_v1.2.1.exe",
+    "update_date": "2024-01-20",
+    "changelog": "1. 修复了登录问题\n2. 优化了界面性能\n3. 增加了新功能",
+    "file_size": "16.5MB",
+    "md5": "b2c3d4e5f678901234567890123456a1"
+}
